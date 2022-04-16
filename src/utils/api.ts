@@ -25,7 +25,7 @@ async function request<RequestDataType, ResponseDataType>(
 ): Promise<ResponseType<ResponseDataType>> {
   let res;
   try {
-    res = await axios("http://localhost:3535" + req.path, {
+    res = await axios("https://blog.api.tth37.xyz" + req.path, {
       params: req.params,
       method: req.method,
       data: req.data,
