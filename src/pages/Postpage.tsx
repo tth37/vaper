@@ -5,6 +5,7 @@ import { useNavigation } from "@tth37/react-navi";
 import { PostDetailEntity } from "../schema";
 import moment from "moment";
 import Container from "../layout/Container";
+import Markdown from "../components/Markdown";
 
 interface PropsType {
   post: PostDetailEntity;
@@ -45,16 +46,6 @@ const HeaderDivider: React.FC = () => {
   return <hr className={styles.headerDivider} />;
 };
 
-const Main: React.FC<{ markdownText: string }> = ({ markdownText }) => {
-  const htmlText = markdownParser(markdownText);
-  return (
-    <div
-      className={styles.main}
-      dangerouslySetInnerHTML={{ __html: htmlText }}
-    ></div>
-  );
-};
-
 const Postpage: React.FC<PropsType> = ({ post }) => {
   return (
     <>
@@ -64,7 +55,7 @@ const Postpage: React.FC<PropsType> = ({ post }) => {
       <Container>
         <Header title={post.title} date={post.date} id={post.id} />
         <HeaderDivider />
-        <Main markdownText={post.content} />
+        <Markdown markdownText={post.content}></Markdown>
       </Container>
     </>
   );
