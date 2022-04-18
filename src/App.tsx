@@ -1,4 +1,4 @@
-import { map, mount, redirect, route } from "navi";
+import { lazy, map, mount, redirect, route } from "navi";
 import { Suspense } from "react";
 import { Router, View } from "@tth37/react-navi";
 import Createpostpage from "./pages/Createpostpage";
@@ -17,18 +17,21 @@ async function sleep() {
 }
 
 const routes = mount({
-  "/": redirect("/h/1"),
-  "/c": route({ view: <Createpostpage /> }),
-  "/p/:id": map(async (req) => {
-    const id = parseInt(req.params.id, 10);
-    if (isNaN(id)) return redirect("/");
-    if (id <= 0) return redirect("/");
+  "/": map(async (req) => {
+    const cur = 1;
 
-    const post = await getPostDetail(id);
-    if (!post) return redirect("/");
+    let tot = await getPostCount();
+    if (tot % 8 === 0) tot = tot / 8;
+    else tot = Math.floor(tot / 8) + 1;
 
-    return route({ view: <Postpage post={post} /> });
+    const postList = await getPostList(cur);
+
+    return route({
+      view: <Homepage cur={cur} tot={tot} postList={postList} />,
+    });
   }),
+  "/c": route({ view: <Createpostpage /> }),
+  "/p/:id": lazy(() => import("./pages/PostpageRouter")),
   "/e/:id": map(async (req) => {
     const id = parseInt(req.params.id, 10);
     if (isNaN(id)) return redirect("/");

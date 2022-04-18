@@ -31,7 +31,7 @@ const Homepage: React.FC<PropsType> = (props) => {
   return (
     <>
       <Helmet>
-        <style>{"body { background-color: black; }"}</style>
+        <title>tth37's blog</title>
       </Helmet>
       <Container>
         <div className={styles.container}>

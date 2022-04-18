@@ -6,6 +6,7 @@ import { PostDetailEntity } from "../schema";
 import moment from "moment";
 import Container from "../layout/Container";
 import Markdown from "../components/Markdown";
+import { useEffect } from "react";
 
 interface PropsType {
   post: PostDetailEntity;
@@ -19,7 +20,7 @@ const Header: React.FC<{ id: number; title: string; date: string }> = ({
   const navigation = useNavigation();
 
   function handleGoBack() {
-    navigation.goBack();
+    navigation.navigate("/");
   }
 
   function handleGoEdit() {
@@ -33,11 +34,9 @@ const Header: React.FC<{ id: number; title: string; date: string }> = ({
         {moment(date).format("YYYY 年 MM 月 DD 日")}
       </p>
       <span className={styles.back} onClick={handleGoBack}>
-        &lt;&lt;返回
+        首页
       </span>
-      <span className={styles.back} onClick={handleGoEdit}>
-        &lt;&lt;编辑
-      </span>
+      <span onClick={handleGoEdit}>&nbsp;/&nbsp;正文</span>
     </div>
   );
 };
@@ -50,7 +49,7 @@ const Postpage: React.FC<PropsType> = ({ post }) => {
   return (
     <>
       <Helmet>
-        <style>{"body { background-color: black; }"}</style>
+        <title>{post.title + " | tth37's blog"}</title>
       </Helmet>
       <Container>
         <Header title={post.title} date={post.date} id={post.id} />
