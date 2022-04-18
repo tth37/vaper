@@ -1,5 +1,5 @@
 import moment from "moment";
-import { useNavigation } from "react-navi";
+import { useNavigation } from "@tth37/react-navi";
 import { PostEntity } from "../schema";
 import styles from "./PostList.module.less";
 

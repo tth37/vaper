@@ -7,6 +7,8 @@ import "highlight.js/styles/atom-one-dark.css";
 import moment from "moment";
 import "moment/dist/locale/zh-cn";
 
+import "./index.css";
+
 import App from "./App";
 
 moment.locale("zh-cn");

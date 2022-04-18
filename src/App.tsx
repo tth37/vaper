@@ -1,6 +1,6 @@
-import { map, mount, redirect, route, withData } from "navi";
+import { map, mount, redirect, route } from "navi";
 import { Suspense } from "react";
-import { Router, View } from "react-navi";
+import { Router, View } from "@tth37/react-navi";
 import Createpostpage from "./pages/Createpostpage";
 import Editpostpage from "./pages/Editpostpage";
 import Homepage from "./pages/Homepage";
@@ -18,7 +18,7 @@ async function sleep() {
 
 const routes = mount({
   "/": redirect("/h/1"),
-  c: route({ view: <Createpostpage /> }),
+  "/c": route({ view: <Createpostpage /> }),
   "/p/:id": map(async (req) => {
     const id = parseInt(req.params.id, 10);
     if (isNaN(id)) return redirect("/");
@@ -29,7 +29,7 @@ const routes = mount({
 
     return route({ view: <Postpage post={post} /> });
   }),
-  "e/:id": map(async (req) => {
+  "/e/:id": map(async (req) => {
     const id = parseInt(req.params.id, 10);
     if (isNaN(id)) return redirect("/");
     if (id <= 0) return redirect("/");

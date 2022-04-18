@@ -1,9 +1,10 @@
 import styles from "./Homepage.module.less";
 import { Helmet } from "react-helmet";
 import Pagination from "../components/Pagination";
-import { useNavigation } from "react-navi";
+import { useNavigation } from "@tth37/react-navi";
 import { PostEntity } from "../schema";
 import PostList from "../components/PostList";
+import Container from "../layout/Container";
 
 interface PropsType {
   cur: number;
@@ -32,18 +33,20 @@ const Homepage: React.FC<PropsType> = (props) => {
       <Helmet>
         <style>{"body { background-color: black; }"}</style>
       </Helmet>
-      <div className={styles.container}>
-        <Header />
-        <HeaderDivider />
-        <PostList postList={props.postList} />
-        <Pagination
-          tot={props.tot}
-          cur={props.cur}
-          change={(to: number) => {
-            navigation.navigate("/h/" + to);
-          }}
-        />
-      </div>
+      <Container>
+        <div className={styles.container}>
+          <Header />
+          <HeaderDivider />
+          <PostList postList={props.postList} />
+          <Pagination
+            tot={props.tot}
+            cur={props.cur}
+            change={(to: number) => {
+              navigation.navigate("/h/" + to);
+            }}
+          />
+        </div>
+      </Container>
     </>
   );
 };

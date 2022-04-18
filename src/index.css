@@ -1,0 +1,23 @@
+body {
+  font-family: "Montserrat", "SF UI Text", "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Segoe UI", "Helvetica Neue", Helvetica,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+.hljs {
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+.hljs::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: #282c34;
+  border-radius: 5px;
+}
+
+.hljs::-webkit-scrollbar-thumb {
+  background-color: rgb(161, 161, 161);
+  border-radius: 5px;
+}

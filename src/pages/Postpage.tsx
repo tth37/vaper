@@ -1,9 +1,10 @@
 import { Helmet } from "react-helmet";
 import styles from "./Postpage.module.less";
 import markdownParser from "../markdown/parser";
-import { useNavigation } from "react-navi";
+import { useNavigation } from "@tth37/react-navi";
 import { PostDetailEntity } from "../schema";
 import moment from "moment";
+import Container from "../layout/Container";
 
 interface PropsType {
   post: PostDetailEntity;
@@ -60,11 +61,11 @@ const Postpage: React.FC<PropsType> = ({ post }) => {
       <Helmet>
         <style>{"body { background-color: black; }"}</style>
       </Helmet>
-      <div className={styles.container}>
+      <Container>
         <Header title={post.title} date={post.date} id={post.id} />
         <HeaderDivider />
         <Main markdownText={post.content} />
-      </div>
+      </Container>
     </>
   );
 };
